@@ -1,96 +1,69 @@
-# PDP - Prueba Técnica Frontend
+# React + TypeScript + Vite
 
-Página de Detalle de Producto (PDP) desarrollada como prueba técnica para el rol de Analista Frontend. Esta aplicación presenta una experiencia de usuario fluida, moderna y responsive, integrando una API pública y funcionalidades clave como carrito de compras persistente y vitrina de productos recomendados.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
+Currently, two official plugins are available:
 
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Tecnologías utilizadas
+## Expanding the ESLint configuration
 
-- React + TypeScript  
-- Vite  
-- CSS Modules  
-- API REST externa  
-- Persistencia con localStorage  
-- Despliegue en Netlify
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
+```js
+export default tseslint.config([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
+      // Remove tseslint.configs.recommended and replace with this
+      ...tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      ...tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      ...tseslint.configs.stylisticTypeChecked,
 
-## Objetivo de la prueba
-
-Implementar una Página de Producto que contenga:
-
-- Galería de imágenes del producto  
-- Título, marca y referencia (SKU)  
-- Tallas disponibles seleccionables  
-- Selector de color  
-- Precio original y con descuento  
-- Botón "Agregar al carrito"  
-- Carrito funcional con:  
-  - Visualización de productos agregados  
-  - Cantidad y valor total  
-  - Eliminación de ítems  
-  - Persistencia entre sesiones  
-- Vitrina de productos relacionados  
-- Diseño adaptable a mobile, tablet y desktop  
-- Transiciones suaves y buena experiencia UX  
-- Manejo de errores (fallos en API o datos incompletos)
-
-
-
-## Instalación y ejecución local
-
-```
-git clone https://github.com/tuusuario/pdp-prueba-frontend.git
-cd pdp-prueba-frontend
-npm install
-npm run dev
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
 
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-## Compilación para producción
-
+export default tseslint.config([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
-npm run build
-```
-
-El resultado se guardará en la carpeta `/dist`.
-
-
-
-## Despliegue
-
-Este proyecto está desplegado en:  
-https://pdp-prueba.netlify.app  
-_(Actualiza el enlace cuando esté activo)_
-
-
-
-## Capturas de pantalla
-
-<!-- Puedes insertar imágenes aquí -->  
-<!-- ![Desktop view](./screenshots/pdp-desktop.png) -->
-
-
-
-## Consideraciones adicionales
-
-- Código modular y estructurado.  
-- Estilo visual original, sin copiar sitios existentes.  
-- Responsive y con enfoque UX.  
-- Sin backend necesario, datos persistidos localmente.
-
-
-
-## Autor
-
-**Mario Rojas Marín**  
-Frontend Developer – Especialista en VTEX IO  
-📧 ingenieriomarior@gmail.com  
-🔗 https://www.linkedin.com/in/heisemberth-mario-rojas-marin-0b93b6159  
-🔗 https://github.com/mariorojas26
-
-
-
-
-
