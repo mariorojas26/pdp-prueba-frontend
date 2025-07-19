@@ -295,10 +295,10 @@ body {
 }
 .buttonAddToCart:hover{
   border: none;
-  padding: 10px 50px;
+  padding: 15px 50px;
 }
 .buttonAddToCart{
-padding: 10px 50px;
+padding: 15px 50px;
 background: black;
 color: white;
 }
