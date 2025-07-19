@@ -1,5 +1,3 @@
-// src/App.tsx
-import React from 'react'
 import ProductPage from './pages/ProductPage'
 
 function App() {
