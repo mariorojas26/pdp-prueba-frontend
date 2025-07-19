@@ -56,11 +56,6 @@ body {
   border-radius: 8px;
 }
 
-.galleryImage:nth-child(5),
-.galleryImage:nth-child(6) {
-  height: 580px;
-}
-
 .imageScrollContainer {
   overflow-y: auto;
   max-height: 650px;
@@ -287,13 +282,47 @@ button:focus-visible {
   outline: none;
 }
 
-/* ============ RESPONSIVE ============ */
+/* ============ RESPONSIVE DK ============ */
+
+@media (min-width: 767px) {
+  .galleryImage:nth-child(5),
+  .galleryImage:nth-child(6) {
+    height: 580px;
+}
+}
+
+/* ============ RESPONSIVE MB ============ */
 @media (max-width: 767px) {
+  .productTitle {
+    font-size: 25px;
+    margin-top: 0px;
+}
+  .galleryImage:nth-child(5),
+  .galleryImage:nth-child(6) {
+        height: 365px;
+        bottom: 123px;
+}
+
+  .galleryImage{
+        width: 100%;
+        height: 620px;
+        object-fit: cover;
+        object-position: bottom;
+        border-radius: 8px;
+        bottom: 342px;
+        position: relative;
+  }
+  
+  .imageScrollContainer {
+        overflow-x: scroll;
+        overflow-y: hidden;
+        flex-direction: row;
+        height: 207px;
+}
   .pdpWrapper {
     flex-direction: column;
-    margin: 0;
-    padding-left: 16px;
-    padding-right: 16px;
+    margin: 0px;
+    padding: 30px;
   }
 
   .tabContainer {
