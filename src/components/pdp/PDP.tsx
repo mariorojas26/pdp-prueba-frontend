@@ -6,6 +6,7 @@ import PriceBox from './PriceBox'
 import AddToCartButton from './AddToCartButton'
 import SizeSelector from './SizeSelector'
 import ColorSelector from './ColorSelector'
+import ProductDetails from './ProductDetails'
 
 interface Props {
   product: any 
@@ -28,9 +29,13 @@ const PDP: React.FC<Props> = ({ product }) => {
       <ProductInfo
         title={product.productName}
         brand={product.brand}
-        description={product.description}
         reference={product.items?.[0]?.referenceId?.[0]?.Value || 'Sin referencia'}
-        color={product.items?.[0]?.Color?.[0] || 'Sin color'}
+      />
+
+      <ProductDetails
+        description={product.description}
+        caracteristicas={product['CARACTERÍSTICAS'] || []}
+        composicion={product['COMPOSICIÓN'] || []}
       />
 
       {/*Tallas disponibles */}

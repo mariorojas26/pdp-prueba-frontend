@@ -1,23 +1,25 @@
 import React from 'react'
+import styles from './PDP.module.css'
 
 
 interface Props {
   title: string
   brand: string
-  description: string
   reference: string
-  color: string
 }
 
-const ProductInfo: React.FC<Props> = ({ title, brand, description, reference, color }) => {
+const ProductInfo: React.FC<Props> = ({ title, brand, reference, }) => {
   return (
-    <div>
-      <h1>{title}</h1>
-      <p><strong>Marca:</strong> {brand}</p>
-      <p><strong>Referencia:</strong> {reference}</p>
-      <p><strong>Color:</strong> {color}</p>
-      <p><strong>Descripción:</strong> {description}</p>
-    </div>
+<div className={styles.productInfoContainer}>
+  <h1 className={styles.productTitle}>{title}</h1>
+  <p className={styles.productBrand}>
+    <strong>Marca:</strong> {brand}
+  </p>
+  <p className={styles.productReference}>
+    <strong>Referencia:</strong> {reference}
+  </p>
+</div>
+
   )
 }
 

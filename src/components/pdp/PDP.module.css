@@ -15,6 +15,129 @@
   align-items: flex-start;
   margin: 0px 55px;
 }
+.detailsTabs {
+  display: flex;
+  gap: 16px;
+  border-bottom: 1px solid #e0e0e0;
+  margin-top: 24px;
+}
+
+.detailsButton {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  padding: 8px 12px;
+  cursor: pointer;
+  position: relative;
+  color: #555;
+  transition: color 0.2s ease;
+}
+
+.detailsButton:hover {
+  color: #000;
+}
+
+.detailsButton::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 0;
+  height: 2px;
+  background-color: #000;
+  transition: width 0.3s;
+}
+
+.detailsButton:hover::after,
+.activeDetails::after {
+  width: 100%;
+}
+
+.activeDetails {
+  color: #000;
+  font-weight: 500;
+}
+
+.detailsContentWrapper {
+  padding: 12px 0;
+  animation: fadeIn 0.3s ease;
+}
+
+.detailsContent {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #333;
+}
+
+.detailsContent ul {
+  padding-left: 18px;
+  margin: 0;
+}
+
+.detailsContent li {
+  margin-bottom: 6px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+button:focus, button:focus-visible {
+    outline: none;
+}
+.tabContainer {
+  display: flex;
+  gap: 16px;
+  margin-top: 1rem;
+}
+
+.tabButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+  border-radius: 0px;
+}
+
+.tabButton:hover {
+  color: #222;
+  border-color: #ccc;
+}
+
+.tabButtonActive {
+  border-color: #000;
+  color: #000;
+}
+
+.tabContent {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
+  padding: 0;
+  margin-top: 0;
+}
+
+.tabContentVisible {
+  max-height: 600px; /* o el máximo que podría tener tu contenido */
+  opacity: 1;
+  padding: 0.5rem 0;
+  margin-top: 1rem;
+}
+.tabContent ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
 /* Estilos desktop */
 @media (min-width: 767px) {
 .galleryImage {
@@ -38,12 +161,42 @@ border-radius: 8px;
 }
 .imageScrollContainer {
   overflow-y: auto;
-  max-height: 650px; /* puedes ajustar este valor si quieres que se vea menos */
-  padding-right: 8px; /* para que no se corte el scroll */
+  max-height: 650px;
+  padding-right: 8px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+
 }
+
+/* WebKit (Chrome, Safari, Edge) – Oculta la scrollbar por defecto */
+.imageScrollContainer::-webkit-scrollbar {
+  width: 6px;
+  opacity: 0;
+}
+
+/* Track transparente */
+.imageScrollContainer::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Thumb invisible por defecto */
+.imageScrollContainer::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 10px;
+  height: 10px; /* altura mínima del scroll thumb */
+  transition: background-color 0.3s ease;
+}
+
+/* 👇 Aparece sutilmente solo cuando el usuario hace hover */
+.imageScrollContainer:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.12); /* sutil */
+}
+
+.imageScrollContainer:hover::-webkit-scrollbar {
+  opacity: 1;
+}
+
 }
 /* Estilos mobile */
 @media (max-width: 767px) {
