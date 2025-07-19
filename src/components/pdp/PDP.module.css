@@ -188,7 +188,7 @@ body {
 .tabContentVisible {
   max-height: 600px;
   opacity: 1;
-  padding: 0.5rem 0;
+  padding: 0px;
   margin-top: 1rem;
 }
 
@@ -276,14 +276,22 @@ body {
   line-height: 2;
 }
 
-
+.selected {
+  background: black;
+  color: white;
+  border-color: black;
+}
 .buttonsize{
-    background-color: #ffffff;
-    border: 1px solid #0000001f;
-    border-radius: 100px;
-    padding: 10px 11px;
-    margin: 6px;
-    font-weight: 600;
+  border: 1px solid #000000;
+  padding: 8px 14px;
+  margin-right: 8px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  background: white;
+  color: #222;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
 }
 .buttonsize:focus,
 .buttonsize:focus-visible {
@@ -291,16 +299,19 @@ body {
   color: white;
 }
 .buttonsize:hover{
-    border: 1px solid #0000001f;
+    border: 1px solid #999;
 }
 .buttonAddToCart:hover{
   border: none;
   padding: 15px 50px;
+  outline: none;
+  box-shadow: none;
 }
 .buttonAddToCart{
 padding: 15px 50px;
 background: black;
 color: white;
+border-radius: 4px;
 }
 
 /* ============ RESPONSIVE DESKTOP ============ */
@@ -377,73 +388,155 @@ color: white;
   position: fixed;
   top: 20px;
   right: 20px;
-  z-index: 999;
+  z-index: 1000;
 }
 
 .cartButton {
-  background: #000;
+  background: black;
   color: white;
   border: none;
-  padding: 8px 12px;
-  border-radius: 4px;
+  padding: 10px 14px;
+  border-radius: 6px;
   cursor: pointer;
-  position: relative;
-}
-
-.cartCount {
-  background-color: red;
-  color: white;
-  border-radius: 999px;
-  padding: 2px 6px;
-  font-size: 12px;
-  position: absolute;
-  top: -5px;
-  right: -8px;
+  font-weight: bold;
 }
 
 .cartDropdown {
   position: absolute;
+  top: 45px;
   right: 0;
-  top: 40px;
-  width: 300px;
   background: white;
-  border: 1px solid #ddd;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  padding: 1rem;
-  border-radius: 6px;
-}
-
-.cartList {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 1rem 0;
+  border: 1px solid #ccc;
+  width: 300px;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
 .cartItem {
   display: flex;
   gap: 10px;
   margin-bottom: 10px;
-  align-items: center;
 }
 
-.cartImage {
+.cartItemImage {
   width: 60px;
   height: 60px;
   object-fit: cover;
-  border-radius: 6px;
+  border-radius: 4px;
+}
+
+.cartItemDetails {
+  flex: 1;
+  font-size: 0.85rem;
+}
+
+.cartRemove {
+  background: transparent;
+  border: none;
+  color: #ff0040;
+  cursor: pointer;
+  font-size: 0.8rem;
+  margin-top: 5px;
 }
 
 .cartTotal {
   font-weight: bold;
-  margin-bottom: 0.5rem;
+  text-align: right;
+  margin-top: 10px;
 }
 
-.checkoutButton {
-  background: #0070f3;
-  color: white;
-  padding: 0.5rem;
-  border: none;
+.cartCheckout {
   width: 100%;
-  border-radius: 4px;
+  background: #111;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
+  font-weight: bold;
+}
+
+
+
+
+.buttoncolor {
+  padding: 8px 1rem;
+  margin: 0.25rem;
+  border: 1px solid #000000;
+  background-color: white;
+  color: #333;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.buttoncolor:hover {
+  border-color: #999;
+}
+
+.buttonActive {
+  background-color: black;
+  color: white;
+  border-color: black;
+}
+.quantityWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.counterRow {
+  display: flex;
+  align-items: center;
+}
+
+.quantityButtonLeft {
+    padding: 8px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: transparent;
+    border-radius: 4px 0px 0px 4px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid #000000;
+    border-left: 1px solid #000000;
+    border-right: 1px black;
+}
+.quantityButtonRight {
+    padding: 8px 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: transparent;
+    border-radius: 0px 4px 4px 0px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid #000000;
+    border-right: 1px solid #000000;
+    border-left: 1px black;
+}
+.quantityButtonNumber{
+    background: transparent;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-radius: 0px;
+    padding: 8px 20px;
+}
+.quantityButtonRight:focus,
+.quantityButtonRight:focus-visible,
+.quantityButtonLeft:focus,
+.quantityButtonLeft:focus-visible,
+.quantityButtonNumber:focus,
+.quantityButtonNumber:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.quantityDisplay {
+  min-width: 24px;
+  text-align: center;
+  font-weight: bold;
 }

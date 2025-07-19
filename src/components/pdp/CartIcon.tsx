@@ -1,43 +1,54 @@
+// src/components/pdp/CartIcon.tsx
 import React, { useState } from 'react'
 import { useCart } from './CartContext'
 import styles from './PDP.module.css'
 
 const CartIcon: React.FC = () => {
   const { cart, removeFromCart, getCartTotal } = useCart()
-  const [open, setOpen] = useState(false)
+  const [showDropdown, setShowDropdown] = useState(false)
 
-  const toggleDropdown = () => setOpen(!open)
+  const toggleDropdown = () => setShowDropdown(!showDropdown)
 
   return (
     <div className={styles.cartContainer}>
-      {/* Ícono con contador */}
-      <button className={styles.cartButton} onClick={toggleDropdown}>
-        🛒
-        {cart.length > 0 && <span className={styles.cartCount}>{cart.length}</span>}
+      <button onClick={toggleDropdown} className={styles.cartButton}>
+        🛒 ({cart.length})
       </button>
 
-      {/* Dropdown */}
-      {open && (
+      {showDropdown && (
         <div className={styles.cartDropdown}>
-          <h4>Tu carrito</h4>
           {cart.length === 0 ? (
             <p>El carrito está vacío</p>
           ) : (
             <>
-              <ul className={styles.cartList}>
-                {cart.map((item) => (
-                  <li key={item.skuId} className={styles.cartItem}>
-                    <img src={item.image} alt={item.title} className={styles.cartImage} />
-                    <div>
-                      <p>{item.title}</p>
-                      <p>${item.price.toLocaleString()}</p>
-                      <button onClick={() => removeFromCart(item.skuId)}>Eliminar</button>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-              <p className={styles.cartTotal}>Total: ${getCartTotal().toLocaleString()}</p>
-              <button className={styles.checkoutButton}>Finalizar Compra</button>
+              {cart.map((item, index) => (
+                <div key={index} className={styles.cartItem}>
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className={styles.cartItemImage}
+                  />
+                  <div className={styles.cartItemDetails}>
+                    <strong>{item.title}</strong>
+                    <p>Precio: ${item.price.toFixed(2)}</p>
+                    <p>Talla: {item.selectedSize}</p>
+                    <p>Color: {item.selectedColor}</p>
+                    <p>Cantidad: {item.quantity}</p>
+                    <button
+                      className={styles.cartRemove}
+                      onClick={() => removeFromCart(item.skuId)}
+                    >
+                      ❌ Quitar
+                    </button>
+                  </div>
+                </div>
+              ))}
+
+              <hr />
+              <p className={styles.cartTotal}>
+                Total: <strong>${getCartTotal().toFixed(2)}</strong>
+              </p>
+              <button className={styles.cartCheckout}>Finalizar compra</button>
             </>
           )}
         </div>

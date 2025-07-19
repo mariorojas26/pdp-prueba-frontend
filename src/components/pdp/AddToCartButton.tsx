@@ -1,18 +1,28 @@
+// src/components/pdp/AddToCartButton.tsx
 import React from 'react'
 import styles from './PDP.module.css'
-
 import { useCart } from './CartContext'
 import type { CartItem } from './CartContext'
-
 
 interface Props {
   skuId: string
   title: string
   price: number
   image: string
+  selectedSize: string | null
+  selectedColor: string | null
+  quantity: number
 }
 
-const AddToCartButton: React.FC<Props> = ({ skuId, title, price, image }) => {
+const AddToCartButton: React.FC<Props> = ({
+  skuId,
+  title,
+  price,
+  image,
+  selectedSize,
+  selectedColor,
+  quantity
+}) => {
   const { addToCart } = useCart()
 
   const handleClick = () => {
@@ -21,7 +31,9 @@ const AddToCartButton: React.FC<Props> = ({ skuId, title, price, image }) => {
       title,
       price,
       image,
-      quantity: 1
+      quantity,
+      selectedSize: selectedSize || 'No definida',
+      selectedColor: selectedColor || 'No definido'
     }
 
     addToCart(newItem)

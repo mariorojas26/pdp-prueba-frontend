@@ -6,7 +6,9 @@ export interface CartItem {
   title: string
   price: number
   image: string
-  quantity: number  // ⬅️ Agregado para permitir manejar cantidades
+  quantity: number
+  selectedSize?: string
+  selectedColor?: string
 }
 
 interface CartContextType {
@@ -19,13 +21,8 @@ interface CartContextType {
 const CartContext = createContext<CartContextType | undefined>(undefined)
 
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [cart, setCart] = useState<CartItem[]>(() => {
-  const storedCart = localStorage.getItem('cart')
-  return storedCart ? JSON.parse(storedCart) : []
-})
+  const [cart, setCart] = useState<CartItem[]>([])
 
-
-  // Cargar carrito desde localStorage al iniciar
   useEffect(() => {
     const storedCart = localStorage.getItem('cart')
     if (storedCart) {
@@ -33,7 +30,6 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, [])
 
-  // Guardar carrito cada vez que cambie
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart))
   }, [cart])
@@ -47,7 +43,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }
 
   const getCartTotal = () => {
-    return cart.reduce((total, item) => total + item.price, 0)
+    return cart.reduce((total, item) => total + item.price * item.quantity, 0)
   }
 
   return (
