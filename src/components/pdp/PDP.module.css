@@ -138,8 +138,68 @@ button:focus, button:focus-visible {
   padding-left: 0;
   margin: 0;
 }
+.priceBox {
+  display: block;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.priceBox1{
+  display: flex;
+  align-items: center;
+}
+.priceBox2{
+  display: block;
+}
+
+
+.productTitle{
+ font-size: 25px;
+}
+
+.currentPrice {
+  color: #111;
+  font-size: 22px;
+  font-weight: 600;
+  margin-right: 15px;
+  margin: 0px 10px 0px 0px;
+}
+.oldPrice {
+  color: #999;
+  text-decoration: line-through;
+  font-size: 19px;
+  margin: 0px;  
+}
+.productMeta {
+  font-size: 0.875rem; /* más pequeño */
+  color: #666666;       /* gris sutil */
+  margin: 0px;
+  display: flex;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+  align-items: center;
+  line-height: 1.4;
+}
+
+.discount {
+    background-color: #ff0040;
+    color: #fff;
+    padding: 0px 10px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+p.discount{
+    height: 28px;
+}
 /* Estilos desktop */
 @media (min-width: 767px) {
+  .espaciotext{
+    line-height: 2;
+  }
 .galleryImage {
 width: 100%;
 height: 370px;
@@ -220,9 +280,7 @@ border-radius: 8px;
 /* PDP COLUMN END */
 
 /* PRINCE START */
-.priceBox {
-  margin-top: 1rem;
-}
+
 
 .priceBox__oldPrice {
   text-decoration: line-through;

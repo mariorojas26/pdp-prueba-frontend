@@ -23,13 +23,13 @@ const ProductDetails: React.FC<Props> = ({ description, caracteristicas, composi
           onClick={() => setOpenTab('carac')}
           className={`${styles.tabButton} ${openTab === 'carac' ? styles.tabButtonActive : ''}`}
         >
-          Características
+          Detalles
         </button>
         <button
           onClick={() => setOpenTab('comp')}
           className={`${styles.tabButton} ${openTab === 'comp' ? styles.tabButtonActive : ''}`}
         >
-          Composición
+          Materiales
         </button>
       </div>
 
@@ -38,23 +38,27 @@ const ProductDetails: React.FC<Props> = ({ description, caracteristicas, composi
         <p>{description}</p>
       </div>
 
-      {/* CARACTERÍSTICAS */}
+      {/* DETALLES */}
       <div className={`${styles.tabContent} ${openTab === 'carac' ? styles.tabContentVisible : ''}`}>
         <ul>
           {caracteristicas.map((item, idx) => (
-            <li key={idx} dangerouslySetInnerHTML={{ __html: item }} />
+            <li className={styles.espaciotext} key={idx} dangerouslySetInnerHTML={{ __html: item }} />
           ))}
         </ul>
       </div>
 
-      {/* COMPOSICIÓN */}
+      {/* MATERIALES */}
       <div className={`${styles.tabContent} ${openTab === 'comp' ? styles.tabContentVisible : ''}`}>
-        <ul>
-          {composicion.map((item, idx) => (
-            <li key={idx}>{item}</li>
-          ))}
+        <ul className={styles.materialList}>
+          {composicion[0]
+            .split('|')
+            .map((item, idx) => (
+              <li className={styles.espaciotext} key={idx}>- {item.trim()}</li>
+            ))}
         </ul>
       </div>
+
+      
     </div>
   )
 }

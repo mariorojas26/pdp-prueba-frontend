@@ -2,7 +2,6 @@ import React from 'react'
 import styles from './PDP.module.css'
 import ImageGallery from './ImageGallery'
 import ProductInfo from './ProductInfo'
-import PriceBox from './PriceBox'
 import AddToCartButton from './AddToCartButton'
 import SizeSelector from './SizeSelector'
 import ColorSelector from './ColorSelector'
@@ -25,9 +24,12 @@ const PDP: React.FC<Props> = ({ product }) => {
 
     {/* COLUMNA 2: Información del Producto */}
     <div className={styles.pdpInfo}>
+      
       {/* Título, Marca, Descripción, Referencia, Color */}
       <ProductInfo
         title={product.productName}
+        price={product.items[0].sellers[0].commertialOffer.Price}
+        listPrice={product.items[0].sellers[0].commertialOffer.ListPrice}     
         brand={product.brand}
         reference={product.items?.[0]?.referenceId?.[0]?.Value || 'Sin referencia'}
       />
@@ -58,12 +60,6 @@ const PDP: React.FC<Props> = ({ product }) => {
               .filter((color: string | null): color is string => color !== null)
           )
         )}
-      />
-
-      {/* Precios */}
-      <PriceBox
-        price={product.items[0].sellers[0].commertialOffer.Price}
-        listPrice={product.items[0].sellers[0].commertialOffer.ListPrice}
       />
 
       {/*Botón de agregar al carrito */}
