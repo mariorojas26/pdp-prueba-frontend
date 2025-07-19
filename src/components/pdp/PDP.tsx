@@ -14,7 +14,6 @@ interface Props {
 }
 
 const PDP: React.FC<Props> = ({ product }) => {
-  // Extraer tallas y colores
   const sizes: string[] = Array.from(
     new Set(
       product.items
@@ -31,18 +30,18 @@ const PDP: React.FC<Props> = ({ product }) => {
     )
   )
 
-  // Estados
   const [selectedSize, setSelectedSize] = useState<string | null>(null)
   const [selectedColor, setSelectedColor] = useState<string | null>(null)
   const [quantity, setQuantity] = useState<number>(1)
 
-  // Selección por defecto si no elige
+  // Seleccionar primera talla por defecto si no hay selección
   useEffect(() => {
     if (!selectedSize && sizes.length > 0) {
       setSelectedSize(sizes[0])
     }
   }, [sizes, selectedSize])
 
+  // Seleccionar primer color por defecto si no hay selección
   useEffect(() => {
     if (!selectedColor && colors.length > 0) {
       setSelectedColor(colors[0])
@@ -87,6 +86,7 @@ const PDP: React.FC<Props> = ({ product }) => {
           selectedSize={selectedSize}
           selectedColor={selectedColor}
           quantity={quantity}
+          onAdded={() => setQuantity(1)} // ✅ Resetea la cantidad después de agregar
         />
 
         <SizeSelector sizes={sizes} onSelectSize={setSelectedSize} />

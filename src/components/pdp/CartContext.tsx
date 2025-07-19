@@ -14,59 +14,80 @@ export interface CartItem {
 interface CartContextType {
   cart: CartItem[]
   addToCart: (item: CartItem) => void
-  removeFromCart: (skuId: string) => void
+  removeFromCart: (skuId: string, size?: string, color?: string) => void
   getCartTotal: () => number
+  showCart: boolean
+  toggleCart: () => void
+  openCart: () => void
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined)
 
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [cart, setCart] = useState<CartItem[]>([])
-  const [isReady, setIsReady] = useState(false)
+  const [isInitialized, setIsInitialized] = useState(false)
+  const [showCart, setShowCart] = useState(false)
 
-  // Leer carrito desde localStorage al montar
   useEffect(() => {
     const storedCart = localStorage.getItem('cart')
     if (storedCart) {
-      setCart(JSON.parse(storedCart))
+      try {
+        const parsed = JSON.parse(storedCart)
+        if (Array.isArray(parsed)) {
+          setCart(parsed)
+        }
+      } catch (err) {
+        console.error('Error al leer el carrito del localStorage:', err)
+      }
     }
-    setIsReady(true)
+    setIsInitialized(true)
   }, [])
 
-  // Guardar carrito en localStorage cada vez que cambie
   useEffect(() => {
-    if (isReady) {
+    if (isInitialized) {
       localStorage.setItem('cart', JSON.stringify(cart))
     }
-  }, [cart, isReady])
+  }, [cart, isInitialized])
 
-  // Agregar producto, evitando duplicados
   const addToCart = (item: CartItem) => {
     setCart(prev => {
-      const existing = prev.find(p => p.skuId === item.skuId)
-      if (existing) {
-        return prev.map(p =>
-          p.skuId === item.skuId
-            ? { ...p, quantity: p.quantity + item.quantity }
-            : p
-        )
+      const existingIndex = prev.findIndex(p =>
+        p.skuId === item.skuId &&
+        p.selectedSize === item.selectedSize &&
+        p.selectedColor === item.selectedColor
+      )
+
+      if (existingIndex !== -1) {
+        const updated = [...prev]
+        updated[existingIndex].quantity += item.quantity
+        return updated
       }
+
       return [...prev, item]
     })
   }
 
-  const removeFromCart = (skuId: string) => {
-    setCart(prev => prev.filter(item => item.skuId !== skuId))
+  const removeFromCart = (skuId: string, size?: string, color?: string) => {
+    setCart(prev =>
+      prev.filter(item =>
+        !(item.skuId === skuId &&
+          item.selectedSize === size &&
+          item.selectedColor === color)
+      )
+    )
   }
 
   const getCartTotal = () => {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0)
   }
 
-  if (!isReady) return null // Evita exponer datos antes de cargar
+  const toggleCart = () => setShowCart(prev => !prev)
+  const openCart = () => setShowCart(true)
+
+  if (!isInitialized) return null
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, getCartTotal }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, getCartTotal, showCart, toggleCart, openCart }}>
       {children}
     </CartContext.Provider>
   )

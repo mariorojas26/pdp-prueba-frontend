@@ -12,6 +12,7 @@ interface Props {
   selectedSize: string | null
   selectedColor: string | null
   quantity: number
+  onAdded?: () => void // 🔧 Nuevo callback opcional
 }
 
 const AddToCartButton: React.FC<Props> = ({
@@ -21,9 +22,10 @@ const AddToCartButton: React.FC<Props> = ({
   image,
   selectedSize,
   selectedColor,
-  quantity
+  quantity,
+  onAdded
 }) => {
-  const { addToCart } = useCart()
+  const { addToCart, openCart } = useCart() // ✅ openCart para abrir el carrito
 
   const handleClick = () => {
     const newItem: CartItem = {
@@ -37,6 +39,8 @@ const AddToCartButton: React.FC<Props> = ({
     }
 
     addToCart(newItem)
+    openCart()       // ✅ Abre el carrito al agregar
+    onAdded?.()      // ✅ Llama al callback si existe
   }
 
   return (
