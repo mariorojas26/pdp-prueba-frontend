@@ -1,6 +1,6 @@
 @media (min-width: 767px) {
   div#root {
-      margin: 0px 45px !important;
+      margin: 45px 45px;
   }
 }
 :root {
