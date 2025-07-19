@@ -1,5 +1,5 @@
 import React from 'react'
-
+import styles from './PDP.module.css'
 
 interface Props {
   skuId: string
@@ -12,7 +12,7 @@ const AddToCartButton: React.FC<Props> = ({ skuId }) => {
   }
 
   return (
-    <button onClick={handleClick}>
+    <button className={styles.buttonAddToCart} onClick={handleClick}>
       Agregar al carrito
     </button>
   )

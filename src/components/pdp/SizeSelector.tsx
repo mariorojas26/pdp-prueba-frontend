@@ -1,4 +1,6 @@
 import React from 'react'
+import styles from './PDP.module.css'
+
 
 interface Props {
   sizes: string[]
@@ -10,7 +12,7 @@ const SizeSelector: React.FC<Props> = ({ sizes }) => {
       <h4>Tallas disponibles</h4>
       <div>
         {sizes.map((size, index) => (
-          <button key={index}>{size}</button>
+          <button className={styles.buttonsize} key={index}>{size}</button>
         ))}
       </div>
     </div>

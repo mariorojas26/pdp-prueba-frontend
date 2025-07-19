@@ -59,7 +59,6 @@ body {
 .imageScrollContainer {
   overflow-y: auto;
   max-height: 650px;
-  padding-right: 8px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -277,12 +276,34 @@ body {
   line-height: 2;
 }
 
-button:focus,
-button:focus-visible {
-  outline: none;
+
+.buttonsize{
+    background-color: #ffffff;
+    border: 1px solid #0000001f;
+    border-radius: 100px;
+    padding: 10px 11px;
+    margin: 6px;
+    font-weight: 600;
+}
+.buttonsize:focus,
+.buttonsize:focus-visible {
+  background: black;
+  color: white;
+}
+.buttonsize:hover{
+    border: 1px solid #0000001f;
+}
+.buttonAddToCart:hover{
+  border: none;
+  padding: 10px 50px;
+}
+.buttonAddToCart{
+padding: 10px 50px;
+background: black;
+color: white;
 }
 
-/* ============ RESPONSIVE DK ============ */
+/* ============ RESPONSIVE DESKTOP ============ */
 
 @media (min-width: 767px) {
   .galleryImage:nth-child(5),
@@ -291,8 +312,11 @@ button:focus-visible {
 }
 }
 
-/* ============ RESPONSIVE MB ============ */
+/* ============ RESPONSIVE MOBILE ============ */
 @media (max-width: 767px) {
+  .pdpGallery {
+    margin-bottom: -30px;
+}
   .productTitle {
     font-size: 25px;
     margin-top: 0px;

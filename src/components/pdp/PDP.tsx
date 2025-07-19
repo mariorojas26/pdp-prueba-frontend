@@ -34,11 +34,18 @@ const PDP: React.FC<Props> = ({ product }) => {
         reference={product.items?.[0]?.referenceId?.[0]?.Value || 'Sin referencia'}
       />
 
+       {/*Drop down detalles */}
+
       <ProductDetails
         description={product.description}
         caracteristicas={product['CARACTERÍSTICAS'] || []}
         composicion={product['COMPOSICIÓN'] || []}
       />
+
+       {/*Botón de agregar al carrito */}
+      <AddToCartButton
+       skuId={product.items[0].itemId} 
+       />
 
       {/*Tallas disponibles */}
       <SizeSelector
@@ -62,8 +69,7 @@ const PDP: React.FC<Props> = ({ product }) => {
         )}
       />
 
-      {/*Botón de agregar al carrito */}
-      <AddToCartButton skuId={product.items[0].itemId} />
+     
     </div>
   </div>
 )
