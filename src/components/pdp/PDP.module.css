@@ -305,7 +305,7 @@ button:focus-visible {
 
   .galleryImage{
         width: 100%;
-        height: 620px;
+        height: 600px;
         object-fit: cover;
         object-position: bottom;
         border-radius: 8px;
