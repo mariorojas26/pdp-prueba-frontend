@@ -8,14 +8,14 @@ interface Props {
 
 const ImageGallery: React.FC<Props> = ({ images, productName }) => {
   return (
-    <div className={styles.galleryWrapper}>
+    <div className={styles.imageScrollContainer}>
       {images.map((img, i) => (
         <img
           key={i}
           src={img.imageUrl}
-          width={100}
           className={styles.galleryImage}
           alt={`${productName} ${i + 1}`}
+          width={100}
         />
       ))}
     </div>
