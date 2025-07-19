@@ -1,4 +1,20 @@
-/* src/components/PDP/PDP.module.css */
+/* src/components/PDP/PDP.module.css - Código optimizado y comentado */
+
+/* ============ RESET GLOBAL ============ */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: inherit;
+}
+
+/* ============ CONTENEDOR GENERAL ============ */
 .container {
   display: flex;
   flex-direction: column;
@@ -8,12 +24,186 @@
   margin: 0 auto;
 }
 
-/* PDP COLUMN START */
 .pdpWrapper {
   display: flex;
   gap: 40px;
   align-items: flex-start;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
+
+.pdpGallery {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.pdpInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ============ GALERÍA ============ */
+.galleryImage {
+  width: 100%;
+  height: 370px;
+  object-fit: cover;
+  object-position: bottom;
+  border-radius: 8px;
+}
+
+.galleryImage:nth-child(5),
+.galleryImage:nth-child(6) {
+  height: 580px;
+}
+
+.imageScrollContainer {
+  overflow-y: auto;
+  max-height: 650px;
+  padding-right: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.imageScrollContainer::-webkit-scrollbar {
+  width: 6px;
+  opacity: 0;
+}
+
+.imageScrollContainer::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.imageScrollContainer::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 10px;
+  height: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.imageScrollContainer:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
+.imageScrollContainer:hover::-webkit-scrollbar {
+  opacity: 1;
+}
+
+/* ============ INFO PRODUCTO: TÍTULO, MARCA, PRECIO ============ */
+.productTitle {
+  font-size: 25px;
+}
+
+.productMeta {
+  font-size: 0.875rem;
+  color: #666666;
+  margin: 0;
+  display: flex;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+  align-items: center;
+  line-height: 1.4;
+}
+
+.priceBox {
+  display: block;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.priceBox1 {
+  display: flex;
+  align-items: center;
+}
+
+.priceBox2 {
+  display: block;
+}
+
+.currentPrice {
+  color: #111;
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0px 10px 0px 0px;
+}
+
+.oldPrice {
+  color: #999;
+  text-decoration: line-through;
+  font-size: 19px;
+  margin: 0px;
+}
+
+.discount {
+  background-color: #ff0040;
+  color: #fff;
+  padding: 0px 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 28px;
+}
+
+/* ============ TABS ============ */
+.tabContainer {
+  display: flex;
+  gap: 16px;
+  margin-top: 1rem;
+}
+
+.tabButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+  border-radius: 0px;
+}
+
+.tabButton:hover {
+  color: #222;
+  border-color: #ccc;
+}
+
+.tabButtonActive {
+  border-color: #000;
+  color: #000;
+}
+
+.tabContent {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
+  padding: 0;
+  margin-top: 0;
+  text-align: justify;
+}
+
+.tabContentVisible {
+  max-height: 600px;
+  opacity: 1;
+  padding: 0.5rem 0;
+  margin-top: 1rem;
+}
+
+.tabContent ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
 .detailsTabs {
   display: flex;
   gap: 16px;
@@ -87,235 +277,20 @@
     transform: translateY(0);
   }
 }
-button:focus, button:focus-visible {
-    outline: none;
-}
-.tabContainer {
-  display: flex;
-  gap: 16px;
-  margin-top: 1rem;
+
+.espaciotext {
+  line-height: 2;
 }
 
-.tabButton {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0.5rem 1rem;
-  font-weight: 500;
-  border-bottom: 2px solid transparent;
-  transition: all 0.3s ease;
-  border-radius: 0px;
+button:focus,
+button:focus-visible {
+  outline: none;
 }
 
-.tabButton:hover {
-  color: #222;
-  border-color: #ccc;
-}
-
-.tabButtonActive {
-  border-color: #000;
-  color: #000;
-}
-
-.tabContent {
-  overflow: hidden;
-  max-height: 0;
-  opacity: 0;
-  transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
-  padding: 0;
-  margin-top: 0;
-}
-
-.tabContentVisible {
-  max-height: 600px; /* o el máximo que podría tener tu contenido */
-  opacity: 1;
-  padding: 0.5rem 0;
-  margin-top: 1rem;
-}
-.tabContent ul {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-}
-.priceBox {
-  display: block;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-.priceBox1{
-  display: flex;
-  align-items: center;
-}
-.priceBox2{
-  display: block;
-}
-
-
-.productTitle{
- font-size: 25px;
-}
-
-.currentPrice {
-  color: #111;
-  font-size: 22px;
-  font-weight: 600;
-  margin-right: 15px;
-  margin: 0px 10px 0px 0px;
-}
-.oldPrice {
-  color: #999;
-  text-decoration: line-through;
-  font-size: 19px;
-  margin: 0px;  
-}
-.productMeta {
-  font-size: 0.875rem; /* más pequeño */
-  color: #666666;       /* gris sutil */
-  margin: 0px;
-  display: flex;
-  gap: 0.25rem;
-  flex-wrap: wrap;
-  align-items: center;
-  line-height: 1.4;
-}
-
-.discount {
-    background-color: #ff0040;
-    color: #fff;
-    padding: 0px 10px;
-    border-radius: 6px;
-    font-size: 0.85rem;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-p.discount{
-    height: 28px;
-}
-/* Estilos desktop */
-@media (min-width: 767px) {
-  .espaciotext{
-    line-height: 2;
-  }
-.galleryImage {
-width: 100%;
-height: 370px;
-object-fit: cover;
-object-position: bottom;
-border-radius: 8px;
-}
-/* Imagen 5 y 6 con más altura */
-.galleryImage:nth-child(5),
-.galleryImage:nth-child(6) {
-  height: 580px;
-}
-
-.pdpGallery {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-.imageScrollContainer {
-  overflow-y: auto;
-  max-height: 650px;
-  padding-right: 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-
-}
-
-/* WebKit (Chrome, Safari, Edge) – Oculta la scrollbar por defecto */
-.imageScrollContainer::-webkit-scrollbar {
-  width: 6px;
-  opacity: 0;
-}
-
-/* Track transparente */
-.imageScrollContainer::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-/* Thumb invisible por defecto */
-.imageScrollContainer::-webkit-scrollbar-thumb {
-  background-color: transparent;
-  border-radius: 10px;
-  height: 10px; /* altura mínima del scroll thumb */
-  transition: background-color 0.3s ease;
-}
-
-/* 👇 Aparece sutilmente solo cuando el usuario hace hover */
-.imageScrollContainer:hover::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.12); /* sutil */
-}
-
-.imageScrollContainer:hover::-webkit-scrollbar {
-  opacity: 1;
-}
-
-}
-/* Estilos mobile */
+/* ============ RESPONSIVE ============ */
 @media (max-width: 767px) {
-  
   .pdpWrapper {
     flex-direction: column;
-    margin: 0px 16px; /* margen más reducido para móviles */
-  }
-}
-
-.pdpGallery {
-  flex: 1;
-}
-
-.pdpInfo {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-/* PDP COLUMN END */
-
-/* PRINCE START */
-
-
-.priceBox__oldPrice {
-  text-decoration: line-through;
-  color: #888;
-  margin-bottom: 0.25rem;
-}
-
-.priceBox__currentPrice {
-  color: #000;
-  font-weight: 400;
-}
-/* PRINCE END */
-
-/* 👮‍♂️ Garantiza que nada se desborde en mobile */
-html,
-body {
-  overflow-x: hidden;
-  max-width: 100vw;
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-* {
-  box-sizing: inherit;
-}
-
-.pdpWrapper {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-@media (max-width: 767px) {
-  .pdpWrapper {
     margin: 0;
     padding-left: 16px;
     padding-right: 16px;
@@ -333,4 +308,15 @@ body {
     padding-left: 8px;
     padding-right: 8px;
   }
+}
+
+.priceBox__oldPrice {
+  text-decoration: line-through;
+  color: #888;
+  margin-bottom: 0.25rem;
+}
+
+.priceBox__currentPrice {
+  color: #000;
+  font-weight: 400;
 }
