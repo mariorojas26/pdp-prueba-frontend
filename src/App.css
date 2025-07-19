@@ -43,8 +43,3 @@
   color: #888;
 }
 }
-@media (min-width: 767px) {
-  div#root {
-      margin: 0px 30px;
-  }
-}
