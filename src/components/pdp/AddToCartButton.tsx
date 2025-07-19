@@ -1,14 +1,30 @@
 import React from 'react'
 import styles from './PDP.module.css'
 
+import { useCart } from './CartContext'
+import type { CartItem } from './CartContext'
+
+
 interface Props {
   skuId: string
+  title: string
+  price: number
+  image: string
 }
 
-const AddToCartButton: React.FC<Props> = ({ skuId }) => {
+const AddToCartButton: React.FC<Props> = ({ skuId, title, price, image }) => {
+  const { addToCart } = useCart()
+
   const handleClick = () => {
-    const url = `https://cuerosvelezco.myvtex.com/checkout/cart/add?sku=${skuId}&qty=1&seller=1&sc=1`
-    window.open(url, '_blank')
+    const newItem: CartItem = {
+      skuId,
+      title,
+      price,
+      image,
+      quantity: 1
+    }
+
+    addToCart(newItem)
   }
 
   return (

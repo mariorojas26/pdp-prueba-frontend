@@ -43,9 +43,12 @@ const PDP: React.FC<Props> = ({ product }) => {
       />
 
        {/*Botón de agregar al carrito */}
-      <AddToCartButton
-       skuId={product.items[0].itemId} 
-       />
+     <AddToCartButton
+        skuId={product.items[0].itemId}
+        title={product.productName}
+        price={product.items[0].sellers[0].commertialOffer.Price}
+        image={product.items[0].images?.[0]?.imageUrl || ''}
+      />
 
       {/*Tallas disponibles */}
       <SizeSelector

@@ -373,3 +373,77 @@ color: white;
   color: #000;
   font-weight: 400;
 }
+.cartContainer {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 999;
+}
+
+.cartButton {
+  background: #000;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+}
+
+.cartCount {
+  background-color: red;
+  color: white;
+  border-radius: 999px;
+  padding: 2px 6px;
+  font-size: 12px;
+  position: absolute;
+  top: -5px;
+  right: -8px;
+}
+
+.cartDropdown {
+  position: absolute;
+  right: 0;
+  top: 40px;
+  width: 300px;
+  background: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+.cartList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+
+.cartItem {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.cartImage {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.cartTotal {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.checkoutButton {
+  background: #0070f3;
+  color: white;
+  padding: 0.5rem;
+  border: none;
+  width: 100%;
+  border-radius: 4px;
+  cursor: pointer;
+}
