@@ -1,5 +1,5 @@
 // src/components/pdp/PDP.tsx
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from './PDP.module.css'
 import ImageGallery from './ImageGallery'
 import ProductInfo from './ProductInfo'
@@ -14,9 +14,40 @@ interface Props {
 }
 
 const PDP: React.FC<Props> = ({ product }) => {
+  // Extraer tallas y colores
+  const sizes: string[] = Array.from(
+    new Set(
+      product.items
+        .map((item: any) => item.Talla?.[0] || null)
+        .filter((size: string | null): size is string => size !== null)
+    )
+  )
+
+  const colors: string[] = Array.from(
+    new Set(
+      product.items
+        .map((item: any) => item.Color?.[0] || null)
+        .filter((color: string | null): color is string => color !== null)
+    )
+  )
+
+  // Estados
   const [selectedSize, setSelectedSize] = useState<string | null>(null)
   const [selectedColor, setSelectedColor] = useState<string | null>(null)
   const [quantity, setQuantity] = useState<number>(1)
+
+  // Selección por defecto si no elige
+  useEffect(() => {
+    if (!selectedSize && sizes.length > 0) {
+      setSelectedSize(sizes[0])
+    }
+  }, [sizes, selectedSize])
+
+  useEffect(() => {
+    if (!selectedColor && colors.length > 0) {
+      setSelectedColor(colors[0])
+    }
+  }, [colors, selectedColor])
 
   return (
     <div className={styles.pdpWrapper}>
@@ -35,7 +66,9 @@ const PDP: React.FC<Props> = ({ product }) => {
           price={product.items[0].sellers[0].commertialOffer.Price}
           listPrice={product.items[0].sellers[0].commertialOffer.ListPrice}
           brand={product.brand}
-          reference={product.items?.[0]?.referenceId?.[0]?.Value || 'Sin referencia'}
+          reference={
+            product.items?.[0]?.referenceId?.[0]?.Value || 'Sin referencia'
+          }
         />
 
         <ProductDetails
@@ -44,42 +77,20 @@ const PDP: React.FC<Props> = ({ product }) => {
           composicion={product['COMPOSICIÓN'] || []}
         />
 
-        <QuantitySelector
-           quantity={quantity} onChange={setQuantity} 
-         />
+        <QuantitySelector quantity={quantity} onChange={setQuantity} />
 
-
-   <AddToCartButton
-      skuId={product.items[0].itemId}
-      title={product.productName}
-      price={product.items[0].sellers[0].commertialOffer.Price}
-      image={product.items[0].images[0].imageUrl}
-      selectedSize={selectedSize}
-      selectedColor={selectedColor}
-      quantity={quantity}
-    />
-
-        <SizeSelector
-          sizes={Array.from(
-            new Set(
-              product.items
-                .map((item: any) => item.Talla?.[0] || null)
-                .filter((size: string | null): size is string => size !== null)
-            )
-          )}
-          onSelectSize={setSelectedSize}
+        <AddToCartButton
+          skuId={product.items[0].itemId}
+          title={product.productName}
+          price={product.items[0].sellers[0].commertialOffer.Price}
+          image={product.items[0].images[0].imageUrl}
+          selectedSize={selectedSize}
+          selectedColor={selectedColor}
+          quantity={quantity}
         />
 
-        <ColorSelector
-          colors={Array.from(
-            new Set(
-              product.items
-                .map((item: any) => item.Color?.[0] || null)
-                .filter((color: string | null): color is string => color !== null)
-            )
-          )}
-          onSelectColor={setSelectedColor}
-        />
+        <SizeSelector sizes={sizes} onSelectSize={setSelectedSize} />
+        <ColorSelector colors={colors} onSelectColor={setSelectedColor} />
       </div>
     </div>
   )

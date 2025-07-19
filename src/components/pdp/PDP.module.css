@@ -288,7 +288,7 @@ body {
   margin-bottom: 10px;
   border-radius: 4px;
   background: white;
-  color: #222;
+  color: #000000;
   cursor: pointer;
   font-size: 0.9rem;
   transition: all 0.2s ease;
@@ -298,6 +298,10 @@ body {
   background: black;
   color: white;
 }
+
+.quantityButtonLeft:hover,
+.quantityButtonRight:hover,
+.quantityButtonNumber:hover,
 .buttonsize:hover{
     border: 1px solid #999;
 }
@@ -438,6 +442,7 @@ border-radius: 4px;
   cursor: pointer;
   font-size: 0.8rem;
   margin-top: 5px;
+  padding: 0px;
 }
 
 .cartTotal {
@@ -465,7 +470,7 @@ border-radius: 4px;
   margin: 0.25rem;
   border: 1px solid #000000;
   background-color: white;
-  color: #333;
+  color: #000000;
   cursor: pointer;
   border-radius: 4px;
   transition: all 0.3s ease;
@@ -497,7 +502,7 @@ border-radius: 4px;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    background-color: transparent;
+    background-color: hsla(0, 0%, 93%, 0.404);
     border-radius: 4px 0px 0px 4px;
     border-top: 1px solid black;
     border-bottom: 1px solid #000000;
@@ -509,7 +514,7 @@ border-radius: 4px;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    background-color: transparent;
+    background-color: hsla(0, 0%, 93%, 0.404);
     border-radius: 0px 4px 4px 0px;
     border-top: 1px solid black;
     border-bottom: 1px solid #000000;

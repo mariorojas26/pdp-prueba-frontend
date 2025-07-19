@@ -38,7 +38,7 @@ const CartIcon: React.FC = () => {
                       className={styles.cartRemove}
                       onClick={() => removeFromCart(item.skuId)}
                     >
-                      ❌ Quitar
+                      X Quitar
                     </button>
                   </div>
                 </div>
