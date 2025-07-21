@@ -1,4 +1,4 @@
-import ProductPage from './pages/ProductPage'
+import ProductPage from './CheckApi/ProductPage'
 import CartIcon from './components/pdp/CartIcon'
 
 function App() {
