@@ -63,11 +63,11 @@ Este proyecto está desplegado en NETLIFY:
 
 
 ## Capturas de pantalla
-Desktop
+###Desktop
 
 <img width="1366" height="1706" alt="screencapture-pdpvelez-netlify-app-2025-07-20-22_35_45" src="https://github.com/user-attachments/assets/bd54a6f5-2282-459d-a6b3-19725df5af19" />
 
-Mobile
+###Mobile
 
 <img width="293" height="1487" alt="screencapture-pdpvelez-netlify-app-2025-07-20-22_36_36" src="https://github.com/user-attachments/assets/eba54b58-c26e-4ecd-a119-137398341b20" />
 
