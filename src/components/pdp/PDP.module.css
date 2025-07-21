@@ -755,4 +755,16 @@ p.cartItemText{
   font-size: 1.1em;
 }
 
+.relatedGrid {
+  transition: opacity 0.3s ease-in-out;
+  opacity: 1;
+}
+
+.fadeOut {
+  opacity: 0;
+}
+
+.fadeIn {
+  opacity: 1;
+}
 

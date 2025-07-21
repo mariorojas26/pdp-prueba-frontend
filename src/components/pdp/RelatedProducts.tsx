@@ -12,6 +12,15 @@ const RelatedProducts: React.FC = () => {
   const [related, setRelated] = useState<Product[]>([])
   const [loading, setLoading] = useState(true)
   const [index, setIndex] = useState(0)
+  const [fade, setFade] = useState(false)
+
+  // Preload de imágenes
+  const preloadImages = (urls: string[]) => {
+    urls.forEach(url => {
+      const img = new Image()
+      img.src = url
+    })
+  }
 
   useEffect(() => {
     fetch('https://api-frontend-production.up.railway.app/api/products?ft=tenis')
@@ -23,6 +32,7 @@ const RelatedProducts: React.FC = () => {
           price: p.items?.[0]?.sellers?.[0]?.commertialOffer?.Price ?? 0,
           image: p.items?.[0]?.images?.[0]?.imageUrl ?? 'https://via.placeholder.com/150'
         }))
+        preloadImages(products.map(p => p.image))
         setRelated(products)
       })
       .catch(error => {
@@ -35,12 +45,16 @@ const RelatedProducts: React.FC = () => {
 
   const itemsPerView = typeof window !== 'undefined' && window.innerWidth < 768 ? 2 : 3
 
-  const next = () => {
-    setIndex(prev => (prev + itemsPerView) % related.length)
-  }
-
-  const prev = () => {
-    setIndex(prev => (prev - itemsPerView + related.length) % related.length)
+  const handleChange = (direction: 'next' | 'prev') => {
+    setFade(true)
+    setTimeout(() => {
+      setIndex(prev =>
+        direction === 'next'
+          ? (prev + itemsPerView) % related.length
+          : (prev - itemsPerView + related.length) % related.length
+      )
+      setFade(false)
+    }, 150)
   }
 
   if (loading) return <p>Cargando productos relacionados...</p>
@@ -52,8 +66,8 @@ const RelatedProducts: React.FC = () => {
     <div className={styles.relatedWrapper}>
       <h3 className={styles.relatedTitle}>También te puede interesar</h3>
       <div className={styles.carouselControls}>
-        <button onClick={prev} className={styles.carouselButton}>{'<'}</button>
-        <div className={styles.relatedGrid}>
+        <button onClick={() => handleChange('prev')} className={styles.carouselButton}>{'<'}</button>
+        <div className={`${styles.relatedGrid} ${fade ? styles.fadeOut : styles.fadeIn}`}>
           {visibleItems.map(product => (
             <div key={product.productId} className={styles.relatedCard}>
               <img src={product.image} alt={product.title} className={styles.relatedImage} />
@@ -64,7 +78,7 @@ const RelatedProducts: React.FC = () => {
             </div>
           ))}
         </div>
-        <button onClick={next} className={styles.carouselButton}>{'>'}</button>
+        <button onClick={() => handleChange('next')} className={styles.carouselButton}>{'>'}</button>
       </div>
     </div>
   )
