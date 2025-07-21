@@ -55,7 +55,7 @@ body {
 
 .imageScrollContainer {
     overflow-y: auto;
-    max-height: 924px;
+    max-height: 956px;
     display: flex
 ;
     flex-direction: column;
@@ -315,6 +315,7 @@ padding: 15px 50px;
 background: black;
 color: white;
 border-radius: 4px;
+margin-top: 26px;
 }
 
 /* ============ RESPONSIVE DESKTOP ============ */

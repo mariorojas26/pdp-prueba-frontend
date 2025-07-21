@@ -86,7 +86,10 @@ const PDP: React.FC<Props> = ({ product }) => {
 
         <QuantitySelector quantity={quantity} onChange={setQuantity} />
 
-        <AddToCartButton
+        <SizeSelector sizes={sizes} onSelectSize={setSelectedSize} />
+        <ColorSelector colors={colors} onSelectColor={setSelectedColor} />
+
+          <AddToCartButton
           skuId={product.items[0].itemId}
           title={product.productName}
           price={product.items[0].sellers[0].commertialOffer.Price}
@@ -96,9 +99,7 @@ const PDP: React.FC<Props> = ({ product }) => {
           quantity={quantity}
           onAdded={() => setQuantity(1)}
           />
-
-        <SizeSelector sizes={sizes} onSelectSize={setSelectedSize} />
-        <ColorSelector colors={colors} onSelectColor={setSelectedColor} />
+          
       </div>
     </div>
 
