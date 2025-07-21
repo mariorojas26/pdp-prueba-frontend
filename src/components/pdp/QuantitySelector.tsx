@@ -1,4 +1,3 @@
-// src/components/pdp/QuantitySelector.tsx
 import React from 'react'
 import styles from './PDP.module.css'
 

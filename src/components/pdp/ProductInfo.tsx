@@ -19,7 +19,7 @@ const ProductInfo: React.FC<Props> = ({ title, brand, reference, price, listPric
       {/* Bloque de titulo */}
       <h1 className={styles.productTitle}>{title}</h1>
 
-      {/* Meta info en línea */}
+      {/* SKU Y MARCA */}
       <p className={styles.productMeta}>
         {brand} · SKU {reference}
       </p>

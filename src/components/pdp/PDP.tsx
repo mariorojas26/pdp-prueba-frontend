@@ -1,4 +1,3 @@
-// src/components/pdp/PDP.tsx
 import React, { useState, useEffect } from 'react'
 import styles from './PDP.module.css'
 import ImageGallery from './ImageGallery'
@@ -8,6 +7,8 @@ import SizeSelector from './SizeSelector'
 import ColorSelector from './ColorSelector'
 import ProductDetails from './ProductDetails'
 import QuantitySelector from './QuantitySelector'
+import RelatedProducts from './RelatedProducts'
+import velezicoImg from '../../assets/velezico.png';
 
 interface Props {
   product: any
@@ -34,14 +35,13 @@ const PDP: React.FC<Props> = ({ product }) => {
   const [selectedColor, setSelectedColor] = useState<string | null>(null)
   const [quantity, setQuantity] = useState<number>(1)
 
-  // Seleccionar primera talla por defecto si no hay selección
   useEffect(() => {
     if (!selectedSize && sizes.length > 0) {
       setSelectedSize(sizes[0])
     }
   }, [sizes, selectedSize])
 
-  // Seleccionar primer color por defecto si no hay selección
+
   useEffect(() => {
     if (!selectedColor && colors.length > 0) {
       setSelectedColor(colors[0])
@@ -49,13 +49,21 @@ const PDP: React.FC<Props> = ({ product }) => {
   }, [colors, selectedColor])
 
   return (
+  <>
+       <div className={styles.bannerdk}>
+          <img className={styles.imgbanner} src={velezicoImg} alt="Velezico" />
+      </div>
+
     <div className={styles.pdpWrapper}>
       {/* COLUMNA 1: Galería de Imágenes */}
+      
       <div className={styles.pdpGallery}>
         <ImageGallery
           images={product.items[0].images}
           productName={product.productName}
         />
+   
+
       </div>
 
       {/* COLUMNA 2: Información del Producto */}
@@ -86,14 +94,18 @@ const PDP: React.FC<Props> = ({ product }) => {
           selectedSize={selectedSize}
           selectedColor={selectedColor}
           quantity={quantity}
-          onAdded={() => setQuantity(1)} // ✅ Resetea la cantidad después de agregar
-        />
+          onAdded={() => setQuantity(1)}
+          />
 
         <SizeSelector sizes={sizes} onSelectSize={setSelectedSize} />
         <ColorSelector colors={colors} onSelectColor={setSelectedColor} />
       </div>
     </div>
-  )
+
+<RelatedProducts />
+  </>
+)
+
 }
 
 export default PDP

@@ -1,4 +1,3 @@
-// src/pages/ProductPage.tsx
 import React, { useEffect, useState } from 'react'
 import PDP from '../components/pdp/PDP'
 

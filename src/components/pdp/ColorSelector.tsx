@@ -1,4 +1,3 @@
-// src/components/pdp/ColorSelector.tsx
 import React, { useState } from 'react'
 import styles from './PDP.module.css'
 

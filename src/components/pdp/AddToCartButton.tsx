@@ -1,4 +1,4 @@
-// src/components/pdp/AddToCartButton.tsx
+
 import React from 'react'
 import styles from './PDP.module.css'
 import { useCart } from './CartContext'
@@ -12,7 +12,7 @@ interface Props {
   selectedSize: string | null
   selectedColor: string | null
   quantity: number
-  onAdded?: () => void // 🔧 Nuevo callback opcional
+  onAdded?: () => void 
 }
 
 const AddToCartButton: React.FC<Props> = ({
@@ -25,7 +25,7 @@ const AddToCartButton: React.FC<Props> = ({
   quantity,
   onAdded
 }) => {
-  const { addToCart, openCart } = useCart() // ✅ openCart para abrir el carrito
+  const { addToCart, openCart } = useCart() 
 
   const handleClick = () => {
     const newItem: CartItem = {
@@ -39,8 +39,8 @@ const AddToCartButton: React.FC<Props> = ({
     }
 
     addToCart(newItem)
-    openCart()       // ✅ Abre el carrito al agregar
-    onAdded?.()      // ✅ Llama al callback si existe
+    openCart()     
+    onAdded?.()     
   }
 
   return (
