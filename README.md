@@ -69,21 +69,12 @@ Desktop
 
 Mobile
 
-![Uploading screencapture-pdpvelez-netlify-app-2025-07-20-22_36_36.png…]()
-
-
-## Consideraciones adicionales
-
-- Código modular y estructurado.  
-- Estilo visual original, sin copiar sitios existentes.  
-- Responsive y con enfoque UX.  
-- Sin backend necesario, datos persistidos localmente.
-
+<img width="293" height="1487" alt="screencapture-pdpvelez-netlify-app-2025-07-20-22_36_36" src="https://github.com/user-attachments/assets/eba54b58-c26e-4ecd-a119-137398341b20" />
 
 
 ## Autor
 
-**Mario Rojas Marín**  
+**Heisemberth Mario Rojas Marín**  
 Frontend Developer – Especialista en VTEX IO  
 📧 ingenieriomarior@gmail.com  
 🔗 https://www.linkedin.com/in/heisemberth-mario-rojas-marin-0b93b6159  
